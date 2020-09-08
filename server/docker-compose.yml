@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+    redis:
+        image: redis
+        volumes:
+            - ./dump.rdb:/data/dump.rdb
+        networks:
+            - webnet
+    db:
+        image: postgres
+        restart: always
+        volumes:
+            - ./pgdata:/var/lib/postgresql/data
+        networks:
+            - webnet
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: server
+        ports:
+            - '5432:5432'
+    server:
+        image: server
+        build:
+            context: .
+            dockerfile: ./Dockerfile
+        restart: always
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+            #- ./node_modules:/usr/src/app/node_modules
+        ports:
+            - '4000:4000'
+        networks:
+            - webnet
+        environment:
+            DB_HOST: db
+            REDIS_HOST: redis
+        command: ['yarn', 'start']
+networks:
+    webnet:

@@ -1,0 +1,79 @@
+[
+	{
+		"name": "production",
+		"type": "postgres",
+		"host": "127.0.0.1",
+		"port": 5432,
+		"username": "postgres",
+		"password": "",
+		"database": "postgres",
+		"synchronize": false,
+		"logging": true,
+		"entities": ["app/models/**/*"],
+		"migrations": ["database/migrations/**/*"],
+		"subscribers": ["subscribers/**/*"],
+		"cli": {
+			"entitiesDir": "app/models",
+			"migrationsDir": "database/migrations",
+			"subscribersDir": "subscribers"
+		}
+	},
+	{
+		"name": "test",
+		"type": "postgres",
+		"host": "db",
+		"port": 5432,
+		"username": "postgres",
+		"password": "postgres",
+		"database": "test-server",
+		"dropSchema": true,
+		"synchronize": true,
+		"logging": false,
+		"entities": ["app/models/**/*.ts"],
+		"migrations": ["database/migration/**/*.ts"],
+		"subscribers": ["subscriber/**/*.ts"],
+		"cli": {
+			"entitiesDir": "app/models",
+			"migrationsDir": "database/migration",
+			"subscribersDir": "subscriber"
+		}
+	},
+	{
+		"name": "development",
+		"type": "postgres",
+		"host": "db",
+		"port": 5432,
+		"username": "postgres",
+		"password": "postgres",
+		"database": "server",
+		"synchronize": false,
+		"logging": true,
+		"entities": ["app/models/**/*.ts"],
+		"migrations": ["database/migrations/**/*.ts"],
+		"subscribers": ["subscribers/**/*.ts"],
+		"cli": {
+			"entitiesDir": "app/models",
+			"migrationsDir": "database/migrations",
+			"subscribersDir": "subscribers"
+		}
+	},
+	{
+		"name": "default",
+		"type": "postgres",
+		"host": "localhost",
+		"port": 5432,
+		"username": "postgres",
+		"password": "postgres",
+		"database": "server",
+		"synchronize": false,
+		"logging": true,
+		"entities": ["app/models/**/*"],
+		"migrations": ["database/migrations/**/*"],
+		"subscribers": ["subscribers/**/*"],
+		"cli": {
+			"entitiesDir": "app/models",
+			"migrationsDir": "database/migrations",
+			"subscribersDir": "subscribers"
+		}
+	}
+]
